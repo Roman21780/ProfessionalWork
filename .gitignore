@@ -16,3 +16,4 @@ env/
 # Logs and databases
 *.log
 *.sqlite3
+/py-homeworks-advanced/
