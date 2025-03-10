@@ -17,3 +17,8 @@ env/
 *.log
 *.sqlite3
 /py-homeworks-advanced/
+/Web_Scraping/Lesson/
+/Web_Scraping/test.py
+/Web_Scraping/article.json
+/Web_Scraping/Web_scraping.py
+/Web_Scraping/Web_scraping_3.py

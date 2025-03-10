@@ -12,8 +12,10 @@ with open('phonebook_raw.csv', encoding='utf-8') as f:
 def fix_names(contacts_list):
     fixed_contacts = []
     for contact in contacts_list:
-        full_name = ' '.join(contact[:3]).split(' ')
-        fixed_name = full_name[:3] + contact[3:]
+        full_name = list(filter(None, ' '.join(contact[:3]).split()))  # Убираем лишние пробелы
+        while len(full_name) < 3:
+            full_name.append('')  # Заполняем пустые значения, если их не хватает
+        fixed_name = full_name + contact[3:]
         fixed_contacts.append(fixed_name)
     return fixed_contacts
 
@@ -39,11 +41,12 @@ def fix_phones(contacts_list):
 def merge_duplicates(contacts_list):
     merged_contacts = {}
     for contact in contacts_list:
-        key = (contact[0], contact[1])
+        key = (contact[0], contact[1])  # Фамилия + Имя как ключ
         if key in merged_contacts:
             for i in range(len(contact)):
-                if not merged_contacts[key][i] and contact[i]:
-                    merged_contacts[key][i] = contact[i]
+                if contact[i]:  # Если в новой записи есть данные
+                    if not merged_contacts[key][i] or len(contact[i]) > len(merged_contacts[key][i]):
+                        merged_contacts[key][i] = contact[i]  # Берем более полное значение
         else:
             merged_contacts[key] = contact
     return list(merged_contacts.values())
@@ -55,7 +58,7 @@ contacts_list = fix_phones(contacts_list)
 contacts_list = merge_duplicates(contacts_list)
 
 # Сохранение результата в новый файл
-with open("phonebook.csv", "w", encoding="utf-8") as f:
+with open("phonebook.csv", "w", encoding="utf-8", newline='') as f:
     datawriter = csv.writer(f, delimiter=',')
     datawriter.writerows(contacts_list)
 
