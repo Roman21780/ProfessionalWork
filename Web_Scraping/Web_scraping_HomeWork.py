@@ -29,20 +29,17 @@ def get_full_article_text(browser, article_url):
     try:
         # Переходим на страницу статьи
         browser.get(article_url)
-        time.sleep(3)  # Ждем загрузки страницы
-
-        # Ждем появления основного текста статьи
         article_body = wait_element(browser, delay=10, by=By.CLASS_NAME, value="article-formatted-body")
         if not article_body:
             return ""
+        return article_body.text.strip()
 
         # Получаем HTML-код страницы статьи
-        article_html = browser.page_source
-        article_soup = BeautifulSoup(article_html, 'lxml')
-
+        # article_html = browser.page_source
+        # article_soup = BeautifulSoup(article_html, 'lxml')
         # Извлекаем весь текст статьи
-        full_text = ' '.join(p.text.strip() for p in article_soup.find_all('p'))
-        return full_text
+        # full_text = ' '.join(p.text.strip() for p in article_soup.find_all('p'))
+        # return full_text
     except Exception as e:
         print(f"Ошибка при получении текста статьи: {e}")
         return ""
@@ -58,10 +55,10 @@ browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), opt
 try:
     # Загружаем страницу
     browser.get(URL)
-    time.sleep(5)  # Ждем, пока JavaScript загрузит контент
+    # time.sleep(5)  # Ждем, пока JavaScript загрузит контент
 
     # Ждем появления статей на странице
-    articles_container = wait_element(browser, delay=10, by=By.CLASS_NAME, value="tm-articles-list")
+    articles_container = wait_element(browser, delay=10, by=By.TAG_NAME, value="article")
     if not articles_container:
         print("Статьи не найдены на странице.")
         exit()
@@ -73,7 +70,7 @@ try:
     soup = BeautifulSoup(html, 'lxml')
 
     # Находим все статьи на странице
-    articles = soup.find_all('article', class_='tm-articles-list__item')
+    articles = soup.find_all('article')
     print(f"Найдено статей: {len(articles)}")
 
     # Проходим по каждой статье и проверяем наличие ключевых слов
@@ -86,8 +83,11 @@ try:
             title = title_tag.text.strip()
 
             # Получаем ссылку на статью
-            link = title_tag.find('a')['href']
-            full_url = f"https://habr.com{link}"
+            if title_tag and title_tag.find('a'):
+                link = title_tag.find('a')['href']
+                full_url = f"https://habr.com{link}"
+            else:
+                continue
 
             # Получаем дату публикации
             date_tag = article.find('time')
