@@ -3,6 +3,7 @@ from itertools import chain
 import os
 import datetime
 
+
 def logger(path):
     def __logger(old_function):
         def new_function(*args, **kwargs):
@@ -16,7 +17,9 @@ def logger(path):
             with open(path, 'a', encoding='utf-8') as log_file:
                 log_file.write(log_entry)
             return result
+
         return new_function
+
     return __logger
 
 
@@ -114,6 +117,7 @@ def flat_generator_v3(list_of_lists):
 def flat_generator_v4(list_of_lists):
     return (item for item in chain.from_iterable(list_of_lists))
 
+
 # _________________________
 # task 3
 
@@ -147,6 +151,7 @@ class FlatIteratorHard:
                 return next_item
         raise StopIteration
 
+
 # _________________________
 # task 4
 
@@ -162,7 +167,6 @@ def flat_generator_v5(list_of_list):
 
 
 def test_task_1():
-
     list_of_lists_1 = [
         ['a', 'b', 'c'],
         ['d', 'e', 'f', 'h', False],
@@ -181,7 +185,6 @@ def test_task_1():
 
 
 def test_task_2():
-
     list_of_lists_1 = [
         ['a', 'b', 'c'],
         ['d', 'e', 'f', 'h', False],
@@ -235,7 +238,6 @@ def test_task_4():
 
 
 if __name__ == '__main__':
-
     test_task_1()
     test_task_2()
     test_task_3()
