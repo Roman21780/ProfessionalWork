@@ -1,0 +1,21 @@
+Ссылки с лекции (Заранее скину, чтобы не забыть  :grinning: ):
+https://pythonworld.ru/osnovy/python2-vs-python3-razlichiya-sintaksisa.html
+https://proglib.io/p/annotacii-tipov-v-python-vse-chto-nuzhno-znat-za-5-minut-2022-01-30
+https://www.youtube.com/watch?v=29WDYmT4e1E&list=PLA0M1Bcd0w8yWHh2V70bTtbVxJICrnJHd&index=66
+https://habr.com/ru/post/448782/ 
+https://docs-python.ru/tutorial/mnogopotochnost-python/
+https://habr.com/ru/articles/667630/
+https://teletype.in/@pythontalk/data_structures_algorithms
+https://www.ozon.ru/product/grokaem-algoritmy-illyustrirovannoe-posobie-dlya-programmistov-i-lyubopytstvuyushchih-1347912175
+https://www.ozon.ru/product/chistyy-python-tonkosti-programmirovaniya-dlya-profi-beyder-den-211426197
+https://ozon.ru/t/DXv3JNJ
+https://habr.com/ru/post/319164/
+https://habr.com/ru/post/188010/
+https://habr.com/ru/articles/699600/
+https://habr.com/ru/articles/439576/
+https://habr.com/ru/companies/vk/articles/506824/
+https://habr.com/ru/companies/otus/articles/448350/
+https://habr.com/ru/articles/670980/
+https://proglib.io/p/40-proektov-na-python-dlya-novichkov-i-prodvinutyh-razrabotchikov-2022-05-13
+https://proglib.io/p/python-code-analysis
+https://ru.wikipedia.org/wiki/Timsort
